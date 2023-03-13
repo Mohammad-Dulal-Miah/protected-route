@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Home from './components/Home/Home'
+import Login from './components/Login/Login'
+import Navbar from './components/Navbar/Navbar'
+import Profile from './components/Profile/Profile'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+export const nameContext = createContext(null)
 
-function App() {
+const App = () => {
+  const design = { textAlign: 'center' }
+  const [name, setName] = useState('')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <nameContext.Provider value={[name, setName]}>
+      <div style={design}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home></Home>} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
+          <Route path="/login" element={<Login/>}/>
+        </Routes>
+      </div>
+    </nameContext.Provider>
+  )
 }
 
-export default App;
+export default App

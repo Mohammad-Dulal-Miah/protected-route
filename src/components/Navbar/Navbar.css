@@ -1,0 +1,15 @@
+.navbar-container a{
+
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 10px;
+
+}
+
+.navbar-container a:hover{
+
+    color: orange;
+    border-bottom: 1px solid green;
+    
+}
